@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fire Extinguisher Sections</title>
+</head>
+<body>
+    <h1>Select Section</h1>
+    <ul>
+        {% for section in sections %}
+            <li><a href="{{ url_for('section_page', section_name=section) }}">{{ section }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
