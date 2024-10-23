@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ section_name }} - Fire Extinguishers</title>
+</head>
+<body>
+    <h1>Fire Extinguishers in {{ section_name }}</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Location Number</th>
+                <th>Type</th>
+                <th>Size</th>
+                <th>Location</th>
+                <th>Barcode</th>
+                <th>Serial Number</th>
+                <th>Status</th>
+                <th>Date Inspected</th>
+                <th>Initials</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for extinguisher in extinguishers %}
+            <tr>
+                <td>{{ extinguisher.id }}</td>
+                <td>{{ extinguisher.location_number }}</td>
+                <td>{{ extinguisher.type }}</td>
+                <td>{{ extinguisher.size }}</td>
+                <td>{{ extinguisher.location }}</td>
+                <td>{{ extinguisher.barcode }}</td>
+                <td>{{ extinguisher.serial_number }}</td>
+                <td>{{ extinguisher.pass_fail }}</td>
+                <td>{{ extinguisher.date_inspected }}</td>
+                <td>{{ extinguisher.initials }}</td>
+                <td>
+                    <form action="{{ url_for('mark_pass_fail', id=extinguisher.id) }}" method="POST">
+                        <input type="hidden" name="section_name" value="{{ section_name }}">
+                        <button type="submit" name="status" value="Pass">Pass</button>
+                        <button type="submit" name="status" value="Fail">Fail</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/">Back to Sections</a>
+</body>
+</html>
